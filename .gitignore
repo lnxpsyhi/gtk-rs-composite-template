@@ -1,1 +1,46 @@
-/target
+# 📁 Rust build and debug files
+/target/
+**/*.rs.bk
+*.pdb
+*.dSYM/
+*.rlib
+
+# 🧪 Cargo-related output and logs
+Cargo.lock
+**/mutants.out*/
+
+# ⚙️ JetBrains IDE (RustRover) — optional
+# Uncomment below if you use JetBrains tools
+#.idea/
+
+# 🧠 VS Code settings and extensions
+.vscode/
+.history/
+*.code-workspace
+
+# 🔧 System-specific files
+.DS_Store          # macOS
+Thumbs.db          # Windows
+*.swp              # Vim swap files
+*.swo
+*~
+
+# 🐍 Python (in case you use scripts)
+__pycache__/
+*.pyc
+
+# 📸 Logs, temp files
+*.log
+*.tmp
+*.bak
+
+# 🧼 Node.js-related (if used in frontend)
+node_modules/
+dist/
+.env
+.env.*
+
+# 📦 Package managers
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
