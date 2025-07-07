@@ -1,4 +1,4 @@
-use gtk::{Application, CssProvider, gio::MenuModel, glib, prelude::*};
+use gtk::{Application, CssProvider, glib, prelude::*};
 
 use crate::window::Window;
 
