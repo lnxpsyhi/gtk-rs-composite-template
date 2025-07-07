@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+
+  <menu id="menubar">
+    <submenu>
+      <attribute name="label" translatable="yes">File</attribute>
+      <item>
+        <attribute name="label" translatable="yes">Open</attribute>
+      </item>
+    </submenu>
+  </menu>
+  <template class="MyGtkApp" parent="GtkApplicationWindow">
+    <property name="title">My Gtk App</property>
+    <property name="show-menubar">true</property>
+
+
+    <child>
+      <object class="GtkGrid" id="my_grid">
+        <property name="column-spacing">12</property>
+        <property name="row-spacing">12</property>
+        <child>
+          <object class="GtkEntry" id="my_entry">
+            <property name="enable-emoji-completion">true</property>
+            <property name="max-length">20</property>
+            <property name="placeholder-text">Enter text here..</property>
+            <property name="show-emoji-icon">true</property>
+            <property name="truncate-multiline">true</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+              <property name="column-span">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSwitch" id="my_switch">
+            <property name="tooltip-text">Click me</property>
+            <property name="name">switch</property>
+            <layout>
+              <property name="column">5</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkPasswordEntry" id="my_password_entry">
+            <property name="show-peek-icon">true</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+
+
+  </template>
+</interface>
