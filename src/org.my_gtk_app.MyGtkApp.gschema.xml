@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+    <schema id="org.my_gtk_app.MyGtkApp" path="/org/my_gtk_app/MyGtkApp/">
+        <!-- <key name="is-enabled" type="b">
+            <default>false</default>
+            <summary>Default switch state</summary>
+        </key> -->
+    </schema>
+</schemalist>
