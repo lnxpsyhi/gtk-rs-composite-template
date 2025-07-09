@@ -39,7 +39,6 @@
                     </object>
                 </child>
                 <property name="content">
-                    <!-- some content here -->
                     <object class="AdwNavigationSplitView">
                         <property name="sidebar">
                             <object class="AdwNavigationPage">
