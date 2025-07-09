@@ -2,52 +2,37 @@
 
 <interface>
 
-  <!-- 
   <menu id="main-menu">
-    <section>
+    <submenu>
+      <attribute name="label" translatable="yes">_Menu</attribute>
       <item>
-        <attribute name="label" translatable="yes">_Quit</attribute>
-        <attribute name="action">window.close</attribute>
-        <attribute name="icon">close-menu-symbolic</attribute>
+        <attribute name="label" translatable="yes">_Exit</attribute>
+        <attribute name="action">win.quit</attribute>
+        <!-- <attribute name="target"></attribute> -->
       </item>
-    </section>
+    </submenu>
   </menu>
- -->
 
   <template class="MyGtkApp" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">My Gtk App</property>
-
-    <!-- 
-<child>
-  <object class="GtkScrolledWindow">
-    <property name="child">
-      <object class="MyGtkAppCustomButton" id="button">
-        <property name="label">Press me!</property>
-        <signal name="clicked" handler="handle_button_clicked" swapped="true" />
-        <property name="margin-top">12</property>
-        <property name="margin-bottom">12</property>
-        <property name="margin-start">12</property>
-        <property name="margin-end">12</property>
-      </object>
-    </property>
-  </object>
-</child>
- -->
-
-    <property name="default-width">800</property>
-    <property name="default-height">600</property>
+    <!-- <property name="adaptive-preview">TRUE</property> -->
 
     <property name="content">
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="AdwHeaderBar" id="header">
-            <!-- add children (title widget, buttons, menu) here -->
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="decoration-layout">icon:close</property>
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title">My Gtk App</property>
+                <property name="subtitle">Subtitle</property>
+              </object>
+            </property>
           </object>
         </child>
-        <child>
-          <!-- Your main UI content -->
-        </child>
+        <property name="content">
+          <!-- some content here -->
+        </property>
       </object>
     </property>
 

@@ -1,0 +1,5 @@
+You can install the schema by executing the following commands on Windows run:
+
+mkdir C:/ProgramData/glib-2.0/schemas/
+cp org.gtk_rs.Settings1.gschema.xml C:/ProgramData/glib-2.0/schemas/
+glib-compile-schemas C:/ProgramData/glib-2.0/schemas/

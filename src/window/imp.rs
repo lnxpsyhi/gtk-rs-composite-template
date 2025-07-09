@@ -1,4 +1,3 @@
-#[allow(unused_imports)]
 use {
     crate::custom_button::CustomButton,
     adw::{prelude::*, subclass::prelude::*},
@@ -16,10 +15,6 @@ use {
 #[derive(CompositeTemplate, Default)]
 #[template(resource = "/org/my_gtk_app/MyGtkApp/window.ui")]
 pub struct Window {
-    // #[template_child]
-    // pub button: TemplateChild<CustomButton>,
-    // #[template_child]
-    // pub hello_world_label: TemplateChild<Label>,
     pub settings: OnceCell<Settings>,
 }
 
@@ -33,10 +28,9 @@ impl ObjectSubclass for Window {
 
     fn class_init(klass: &mut Self::Class) {
         // Register 'CustomButton'
-        // CustomButton::ensure_type();
 
         klass.bind_template();
-        // klass.bind_template_callbacks();
+        klass.bind_template_callbacks();
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
@@ -44,17 +38,8 @@ impl ObjectSubclass for Window {
     }
 }
 
-#[allow(unused_variables)]
 impl ObjectImpl for Window {
     fn constructed(&self) {
-        // Call "constructed" on parent
-        self.parent_constructed();
-
-        // setup
-        let obj = self.obj();
-        obj.setup_settings();
-
-        let settings = obj.settings();
         // Connect to "clicked" signal of `button_increase`
         // self.button_increase.connect_clicked(clone!(
         //     #[weak(rename_to = obj)]
@@ -64,18 +49,26 @@ impl ObjectImpl for Window {
         //         obj.label_counter.set_label(&obj.counter.get().to_string());
         //     }
         // ));
+
+        // Call "constructed" on parent
+        self.parent_constructed();
+
+        // setup
+        let obj = self.obj();
+        obj.setup_settings();
+        let settings = obj.settings();
     }
 }
 
-// #[gtk::template_callbacks]
-// impl Window {
-//     #[template_callback]
-//     fn handle_button_clicked(&self, button: &CustomButton) {
-//         let number_increased = self.number.get() + 1;
-//         self.number.set(number_increased);
-//         button.set_label(&number_increased.to_string());
-//     }
-// }
+#[gtk::template_callbacks]
+impl Window {
+    // #[template_callback]
+    // fn handle_button_clicked(&self, button: &CustomButton) {
+    //     let number_increased = self.number.get() + 1;
+    //     self.number.set(number_increased);
+    //     button.set_label(&number_increased.to_string());
+    // }
+}
 
 // Trait shared by all widgets
 impl WidgetImpl for Window {}
