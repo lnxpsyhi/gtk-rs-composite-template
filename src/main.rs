@@ -10,6 +10,9 @@ fn main() -> glib::ExitCode {
     gtk::gio::resources_register_include!("my_gtk_app.gresource")
         .expect("Failed to register resources.");
 
+    // for automating compiling schema
+    // unsafe { std::env::set_var("GSETTINGS_SCHEMA_DIR", env!("GSETTINGS_SCHEMA_DIR")) };
+
     let app = adw::Application::builder().application_id(APP_ID).build();
 
     // load css on app startup
