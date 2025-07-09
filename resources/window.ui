@@ -1,40 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <interface>
-
-  <menu id="main-menu">
-    <submenu>
-      <attribute name="label" translatable="yes">_Menu</attribute>
-      <item>
-        <attribute name="label" translatable="yes">_Exit</attribute>
-        <attribute name="action">win.quit</attribute>
-        <!-- <attribute name="target"></attribute> -->
-      </item>
-    </submenu>
-  </menu>
-
-  <template class="MyGtkApp" parent="AdwApplicationWindow">
-    <property name="title" translatable="yes">My Gtk App</property>
-    <!-- <property name="adaptive-preview">TRUE</property> -->
-
-    <property name="content">
-      <object class="AdwToolbarView">
-        <child type="top">
-          <object class="AdwHeaderBar">
-            <property name="decoration-layout">icon:close</property>
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title">My Gtk App</property>
-                <property name="subtitle">Subtitle</property>
-              </object>
-            </property>
-          </object>
-        </child>
+    <menu id="main-menu">
+        <submenu>
+            <attribute name="label" translatable="yes">_Submenu 1</attribute>
+            <item>
+                <attribute name="label" translatable="yes">_Item 1</attribute>
+                <!-- <attribute name="action"></attribute> -->
+                <!-- <attribute name="target"></attribute> -->
+            </item>
+        </submenu>
+        <submenu>
+            <attribute name="label">_Submenu 2</attribute>
+            <item>
+                <attribute name="label" translatable="yes">_Item 1</attribute>
+            </item>
+        </submenu>
+    </menu>
+    <template class="MyGtkApp" parent="AdwApplicationWindow">
+        <property name="default-width">800</property>
+        <property name="default-height">600</property>
         <property name="content">
-          <!-- some content here -->
+            <object class="AdwToolbarView">
+                <child type="top">
+                    <object class="AdwHeaderBar" id="header_bar">
+                        <property name="decoration-layout">icon:close</property>
+                        <property name="title-widget">
+                            <object class="AdwWindowTitle">
+                                <property name="title">My Gtk App</property>
+                                <property name="subtitle">Subtitle</property>
+                            </object>
+                        </property>
+                        <child type="end">
+                            <object class="GtkMenuButton" id="menu_button">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">main-menu</property>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <property name="content">
+                    <!-- some content here -->
+                    <object class="AdwNavigationSplitView">
+                        <property name="sidebar">
+                            <object class="AdwNavigationPage">
+                                <property name="title" translatable="yes">Sidebar</property>
+                                <property name="child">
+                                    <object class="GtkLabel">
+                                        <property name="label">Sidebar</property>
+                                    </object>
+                                </property>
+                            </object>
+                        </property>
+                        <property name="content">
+                            <object class="AdwNavigationPage">
+                                <property name="title" translatable="yes">Content</property>
+                                <property name="child">
+                                    <object class="GtkLabel">
+                                        <property name="label">Content</property>
+                                    </object>
+                                </property>
+                            </object>
+                        </property>
+                    </object>
+                </property>
+            </object>
         </property>
-      </object>
-    </property>
-
-  </template>
+    </template>
 </interface>

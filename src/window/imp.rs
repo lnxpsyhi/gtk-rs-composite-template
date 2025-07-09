@@ -1,8 +1,9 @@
+#[allow(unused_imports)]
 use {
     crate::custom_button::CustomButton,
     adw::{prelude::*, subclass::prelude::*},
     gtk::{
-        CompositeTemplate, Label,
+        CompositeTemplate, Label, TemplateChild,
         gio::Settings,
         glib::{self, subclass::InitializingObject},
     },
@@ -16,6 +17,10 @@ use {
 #[template(resource = "/org/my_gtk_app/MyGtkApp/window.ui")]
 pub struct Window {
     pub settings: OnceCell<Settings>,
+    #[template_child]
+    pub menu_button: TemplateChild<gtk::MenuButton>,
+    #[template_child]
+    pub header_bar: TemplateChild<adw::HeaderBar>,
 }
 
 // The central trait for subclassing a GObject
@@ -38,6 +43,7 @@ impl ObjectSubclass for Window {
     }
 }
 
+#[allow(unused_variables)]
 impl ObjectImpl for Window {
     fn constructed(&self) {
         // Connect to "clicked" signal of `button_increase`
