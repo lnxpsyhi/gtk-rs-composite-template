@@ -13,7 +13,7 @@ fn main() -> glib::ExitCode {
     let app = adw::Application::builder().application_id(APP_ID).build();
 
     // load css on app startup
-    // app.connect_startup(|_| load_css());
+    app.connect_startup(|_| load_appropriate_css());
 
     app.connect_activate(build_ui);
 
@@ -25,15 +25,28 @@ pub fn build_ui(app: &adw::Application) {
     window.present();
 }
 
-// fn load_css() {
-//     // Load the CSS file and add it to the provider
-//     let provider = CssProvider::new();
-//     provider.load_from_string(include_str!("../resources/style.css"));
+fn load_appropriate_css() {
+    let display = gtk::gdk::Display::default().expect("Failed to get default display");
+    let provider = gtk::CssProvider::new();
+    let manager = adw::StyleManager::default();
 
-//     // Add the provider to the default screen
-//     gtk::style_context_add_provider_for_display(
-//         &gtk::gdk::Display::default().expect("Could not connect to a display."),
-//         &provider,
-//         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-//     );
-// }
+    let css_path = if manager.is_high_contrast() {
+        if manager.is_dark() {
+            "/org/my_gtk_app/MyGtkApp/style-hc-dark.css"
+        } else {
+            "/org/my_gtk_app/MyGtkApp/style-hc.css"
+        }
+    } else if manager.is_dark() {
+        "/org/my_gtk_app/MyGtkApp/style-dark.css"
+    } else {
+        "/org/my_gtk_app/MyGtkApp/style.css"
+    };
+
+    provider.load_from_resource(css_path);
+
+    gtk::style_context_add_provider_for_display(
+        &display,
+        &provider,
+        gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+    );
+}
